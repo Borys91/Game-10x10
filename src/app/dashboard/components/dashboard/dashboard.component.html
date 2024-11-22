@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <app-scoreboard></app-scoreboard>
+  <app-control-panel (start)="startGame($event)" (stop)="stopGame()"></app-control-panel>
+  <mat-card class="board-container">
+    @for (cell of boardState$ | async; track cell.index) {
+      <app-board-item [cell]="cell" (cellClick)="handleCellClick($event)"></app-board-item>
+    }
+  </mat-card>
+</div>

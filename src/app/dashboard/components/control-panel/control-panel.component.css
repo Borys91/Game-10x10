@@ -1,0 +1,10 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.start-btn {
+  margin-bottom: 22px;
+}

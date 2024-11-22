@@ -1,0 +1,9 @@
+<div class="scoreboard">
+  <h2>Scoreboard</h2>
+  <div class="score">
+    <p>Player: {{ playerScore$ | async }}</p>
+    <span>/</span>
+    <p>Computer: {{ computerScore$ | async }}</p>
+  </div>
+  <ng-content></ng-content>
+</div>

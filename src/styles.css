@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Define a drop-down animation */
+@keyframes dropDownFromTop {
+  0% {
+    transform: translateY(-100%);  /* Start off-screen at the top */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);  /* End in the center */
+    opacity: 1;
+  }
+}
+
+/* Drop-down animation for the dialog */
+.drop-down-center {
+  animation: dropDownFromTop 1s linear;
+}
+
+.mdc-button.mat-danger,
+.mat-mdc-stroked-button.mat-danger {
+  color: red;
+}
+.mat-mdc-unelevated-button.mat-danger:hover,
+.mat-mdc-raised-button.mat-danger:hover {
+  color: #f0fff3;
+  background-color: red;
+}
+
+.mat-mdc-unelevated-button:not(:disabled, :hover).mat-danger,
+.mat-mdc-raised-button.mat-danger,
+.mat-mdc-fab.mat-danger,
+.mat-mdc-mini-fab.mat-danger {
+  color: #f0fff3;
+  background-color: red;
+}
+.mat-mdc-icon-button.mat-danger {
+  color: red;
+}
+
+.mdc-button.mat-warn,
+.mat-mdc-stroked-button.mat-warn {
+  color: #838312;
+}
+.mat-mdc-unelevated-button.mat-warn:hover,
+.mat-mdc-raised-button.mat-warn:hover {
+  color: #f0fff3;
+  background-color: #838312;
+}
+
+.mat-mdc-unelevated-button:not(:disabled, :hover).mat-warn,
+.mat-mdc-raised-button.mat-warn,
+.mat-mdc-fab.mat-warn,
+.mat-mdc-mini-fab.mat-warn {
+  color: #f0fff3;
+  background-color: #838312;
+}
+.mat-mdc-icon-button.mat-warn {
+  color: #838312;
+}
+
+

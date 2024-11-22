@@ -1,0 +1,29 @@
+
+.modal {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.modal p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+/* Position and style the close button in the top-right corner */
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
