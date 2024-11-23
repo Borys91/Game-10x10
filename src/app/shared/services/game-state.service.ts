@@ -72,6 +72,7 @@ export class GameStateService {
       currentCell.state === CellStateEnum.Red ||
       currentCell.state === CellStateEnum.Yellow
     ) {
+      this.clearGameTimer();
       return this.startRound();
     }
 
