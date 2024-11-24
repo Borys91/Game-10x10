@@ -8,6 +8,7 @@ import { ResultModalComponent } from '../components/result-modal/result-modal.co
 import { MAX_SCORE } from '../constants';
 import { Cell } from '../models/cell';
 import { CellStateEnum } from '../models/cell-state';
+import { PlayersEnum } from '../models/players';
 import { WinnerType } from '../models/winner';
 
 @Injectable({
@@ -130,7 +131,7 @@ export class GameStateService {
     this.updateScores();
 
     if (this.playerScore === MAX_SCORE) {
-      this.endGame('Player');
+      this.endGame(PlayersEnum.Player);
     } else {
       // Start a new round
       this.startRound();
@@ -155,7 +156,7 @@ export class GameStateService {
     this.updateScores();
 
     if (this.computerScore === MAX_SCORE) {
-      this.endGame('Computer');
+      this.endGame(PlayersEnum.Computer);
     } else {
       this.startRound(); // Start a new round
     }
