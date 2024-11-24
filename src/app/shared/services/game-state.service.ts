@@ -5,6 +5,7 @@ import { BehaviorSubject, Subscription, timer } from 'rxjs';
 import { ModalService } from './modal.service';
 
 import { ResultModalComponent } from '../components/result-modal/result-modal.component';
+import { MAX_SCORE } from '../constants';
 import { Cell } from '../models/cell';
 import { CellStateEnum } from '../models/cell-state';
 import { WinnerType } from '../models/winner';
@@ -34,7 +35,6 @@ export class GameStateService {
   private gameTimer!: Subscription;
   private playerScore = 0;
   private computerScore = 0;
-  private maxScore = 10;
 
   // Initialize the board with default states
   private initializeBoard(): Cell[] {
@@ -129,7 +129,7 @@ export class GameStateService {
     this.playerScore++;
     this.updateScores();
 
-    if (this.playerScore === this.maxScore) {
+    if (this.playerScore === MAX_SCORE) {
       this.endGame('Player');
     } else {
       // Start a new round
@@ -154,7 +154,7 @@ export class GameStateService {
     this.computerScore++;
     this.updateScores();
 
-    if (this.computerScore === this.maxScore) {
+    if (this.computerScore === MAX_SCORE) {
       this.endGame('Computer');
     } else {
       this.startRound(); // Start a new round
