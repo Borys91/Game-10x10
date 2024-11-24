@@ -106,66 +106,45 @@ export class GameStateService {
       this.clearGameTimer();
 
       if (this.currentCellIndex === index) {
-        this.handlePlayerSuccess();
+        this.handlePlayerAction(PlayersEnum.Player);
       } else {
-        this.handlePlayerFailure();
+        this.handlePlayerAction(PlayersEnum.Computer);
       }
     }
   }
 
-  // Player successfully clicked on the yellow cell
-  private handlePlayerSuccess(): void {
-    const currentBoard = this.boardStateSubject.getValue();
+  private handlePlayerAction(player: PlayersEnum): void {
+    if (this.currentCellIndex === null) {
+      return;
+    }
 
-    // Update the specific cell's state
-    currentBoard.forEach((cell) => {
-      if (cell.index === this.currentCellIndex) {
-        cell.setState(CellStateEnum.Green); // Set to green for success
-      }
-    });
+    const currentBoard = this.boardStateSubject.getValue();
+    if (!currentBoard.length) {
+      return;
+    }
+
+    currentBoard[this.currentCellIndex].setState(player === PlayersEnum.Player ? CellStateEnum.Green : CellStateEnum.Red);
 
     // Emit the updated board state
     this.boardStateSubject.next([...currentBoard]);
 
-    this.playerScore++;
+    const isPlayer = player === PlayersEnum.Player;
+    const score = isPlayer ? ++this.playerScore : ++this.computerScore;
+
     this.updateScores();
 
-    if (this.playerScore === MAX_SCORE) {
-      this.endGame(PlayersEnum.Player);
-    } else {
-      // Start a new round
-      this.startRound();
+    if (score === MAX_SCORE) {
+      this.endGame(isPlayer ? PlayersEnum.Player : PlayersEnum.Computer);
+      return;
     }
-  }
 
-  // Player failed to click on the yellow cell in time
-  private handlePlayerFailure(): void {
-    const currentBoard = this.boardStateSubject.getValue();
-
-    // Update the specific cell's state
-    currentBoard.forEach((cell) => {
-      if (cell.index === this.currentCellIndex) {
-        cell.setState(CellStateEnum.Red); // Set to green for success
-      }
-    });
-
-    // Emit the updated board state
-    this.boardStateSubject.next([...currentBoard]);
-
-    this.computerScore++;
-    this.updateScores();
-
-    if (this.computerScore === MAX_SCORE) {
-      this.endGame(PlayersEnum.Computer);
-    } else {
-      this.startRound(); // Start a new round
-    }
+    this.startRound(); // Start a new round
   }
 
   // Handle the timeout case when the player doesn't click in time
   private handleTimeout(): void {
     if (this.currentCellIndex !== null) {
-      this.handlePlayerFailure(); // Treat it as a failure for the player
+      this.handlePlayerAction(PlayersEnum.Computer);
     }
   }
 
